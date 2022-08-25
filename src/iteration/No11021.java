@@ -7,7 +7,7 @@ import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
 public class No11021 {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
