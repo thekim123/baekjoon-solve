@@ -1,6 +1,5 @@
 package basicmath2;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class No1929 {
@@ -10,21 +9,23 @@ public class No1929 {
 
 		int m = sc.nextInt();
 		int n = sc.nextInt();
+		boolean[] arr = new boolean[n + 1];
 
-		int[] arr = new int[n + 1];
-		ArrayList<Integer> primeNumber = new ArrayList<Integer>();
-
-		for (int i = m; i <= n; i++) {
-
+		for (int i = 2; i < arr.length; i++) {
+			arr[i] = true;
 		}
-		arr[1] = -1;
-		for (
 
-				int i = m; i <= n; i++) {
-			if (arr[i] != -1) {
-				System.out.println(i);
+		for (int i = 2; i <= (int) Math.sqrt(n); i++) {
+			if (arr[i]) {
+				for (int j = 2; i * j < arr.length; j++) {
+					arr[i * j] = false;
+				}
 			}
+		}
 
+		for (int i = 2; i < arr.length; i++) {
+			if (arr[i] && i>=m)
+				System.out.println(i);
 		}
 
 	}
