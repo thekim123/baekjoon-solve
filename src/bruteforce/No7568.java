@@ -28,6 +28,7 @@ public class No7568 {
 				}
 			}
 		}
+		
 		for (int i : resultWeightArr) {
 			System.out.println(i);
 		}
