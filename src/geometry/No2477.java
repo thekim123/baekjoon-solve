@@ -29,12 +29,12 @@ public class No2477 {
 			}
 		}
 		
-		for (int i = 0; i < array.length; i++) {
-			if(directionArea[i] = 1) {
-				area *= 
-			}
-		}
-		
+//		for (int i = 0; i < array.length; i++) {
+//			if(directionArea[i] = 1) {
+//				area *= 
+//			}
+//		}
+//		
 		
 	}
 }
