@@ -1,4 +1,4 @@
-package map;
+package mapList;
 
 import java.io.BufferedReader;
 import java.io.IOException;
