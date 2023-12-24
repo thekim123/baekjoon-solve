@@ -19,32 +19,28 @@ public class No5568 {
 
         boolean[] visited = new boolean[n];
 
-        backtrack(arr, new ArrayList<>(), visited, 0, "");
+        backtrack(arr, new StringBuilder(), visited, 0);
 
         System.out.println(set.size());
 
     }
 
 
-    static void backtrack(int[] arr, List<Integer> list, boolean[] visited, int depth, String selected) {
+    static void backtrack(int[] arr, StringBuilder sb, boolean[] visited, int depth) {
         if (depth == k) {
-            StringBuilder selectedBuilder = new StringBuilder(selected);
-            for (int a : list) {
-                selectedBuilder.append(a);
-            }
-            selected = selectedBuilder.toString();
-            set.add(Integer.parseInt(selected));
+            set.add(Integer.parseInt(sb.toString()));
             return;
         }
 
 
         for (int i = 0; i < arr.length; i++) {
             if (!visited[i]) {
+                int originalLength = sb.length();
                 visited[i] = true;
-                list.add(arr[i]);
-                backtrack(arr, list, visited, depth + 1, selected);
+                sb.append(arr[i]);
+                backtrack(arr, sb, visited, depth + 1);
                 visited[i] = false;
-                list.remove(list.size() - 1);
+                sb.delete(originalLength, sb.length());
             }
         }
     }
