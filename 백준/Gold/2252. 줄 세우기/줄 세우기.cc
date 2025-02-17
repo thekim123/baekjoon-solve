@@ -24,9 +24,6 @@ struct Vertex
 class Graph
 {
 public:
-	// 방문 순서 확인용 (pre/post와 revPost 비교해보세요)
-	queue<Vertex*> pre;
-	queue<Vertex*> post;
 	stack<Vertex*> revPost;
 
 	Graph(int num_vertices)
@@ -48,37 +45,8 @@ public:
 		vertices[w]->in_neighbors.push_back(vertices[v]);
 	}
 
-	void PrecedenceCheck(stack<Vertex*> my_stack) // my_stack의 사본
-	{
-		for (auto* v : this->vertices)
-			v->visited = false;
-
-		while (!my_stack.empty())
-		{
-			Vertex* v = my_stack.top();
-			cout << "Precedence check " << v->value << " : ";
-			for (auto* w : v->in_neighbors)
-			{
-				if (!w->visited)
-				{
-					cout << "Wrong" << endl;
-					exit(-1);
-				}
-				else {
-					cout << w->value << ", ";
-				}
-			}
-			cout << endl;
-			v->visited = true;
-			my_stack.pop();
-		}
-		cout << "OK" << endl;
-	}
-
 	stack<Vertex*> TopologicalSort()
 	{
-		pre = queue<Vertex*>();
-		post = queue<Vertex*>();
 		revPost = stack<Vertex*>();
 
 		for (auto* v : this->vertices)
@@ -102,7 +70,6 @@ private:
 
 	void TopologicalSortHelper(Vertex* v)
 	{
-		pre.push(v);
 		v->visited = true;
 		for (auto* w : v->out_neighbors)
 		{
@@ -112,7 +79,6 @@ private:
 			}
 		}
 		revPost.push(v);
-		post.push(v);
 	}
 };
 
@@ -130,8 +96,6 @@ int main()
 		}
 
 		auto my_stack = g.TopologicalSort();
-
-		//g.PrecedenceCheck(my_stack);
 
 		while (!my_stack.empty())
 		{
