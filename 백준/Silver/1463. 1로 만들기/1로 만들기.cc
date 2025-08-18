@@ -4,17 +4,13 @@
 
 using namespace std;
 
-void recur_calc(int n, vector<int>& count) {
-	if (n % 2 == 0) {
-		if (n % 2 == 0 && count[n / 2] + 1 < count[n]) {
-			count[n] = count[n / 2] + 1;
-		}
+void update_dp(int n, vector<int>& count) {
+	if (n % 2 == 0 && count[n / 2] + 1 < count[n]) {
+		count[n] = count[n / 2] + 1;
 	}
 
-	if (n % 3 == 0) {
-		if (n % 3 == 0 && count[n / 3] + 1 < count[n]) {
-			count[n] = count[n / 3] + 1;
-		}
+	if (n % 3 == 0 && count[n / 3] + 1 < count[n]) {
+		count[n] = count[n / 3] + 1;
 	}
 
 	if (n-1 > 0 && count[n - 1] + 1 < count[n]) {
@@ -34,7 +30,7 @@ int main() {
 	count[0] = 0;
 	count[1] = 0;
 	for (int i = 1; i < N+1; i++) {
-		recur_calc(i, count);
+		update_dp(i, count);
 	}
 	cout << count[N];
 
